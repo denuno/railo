@@ -413,7 +413,10 @@ public class HibernateCaster {
 	 * @throws PageException
 	 */
 	public static Object toSQL(HibernateORMEngine engine,Type type, Object value) throws PageException {
-		int t = toSQLType(type.getName(), Types.OTHER);
+		int t = Types.OTHER;
+		if(type!=null) {
+			t = toSQLType(type.getName(), Types.OTHER);
+		}
 		if(t==Types.OTHER) return value;
 		return toSQL(engine, t, value);
 	}
